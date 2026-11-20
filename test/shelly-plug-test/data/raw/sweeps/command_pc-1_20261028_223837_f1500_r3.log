@@ -1,0 +1,11 @@
+# command: C:\llama\bin\llama-bench.exe -m C:\llama\models\Qwen3.5-9B-Q4_K_M.gguf -ngl 99 -p 0 -n 0 -pg 1024,256 -r 27
+ggml_cuda_init: found 1 CUDA devices (Total VRAM: 8187 MiB):
+  Device 0: NVIDIA GeForce RTX 4060 Laptop GPU, compute capability 8.9, VMM: yes, VRAM: 8187 MiB
+load_backend: loaded CUDA backend from C:\llama\bin\ggml-cuda.dll
+load_backend: loaded RPC backend from C:\llama\bin\ggml-rpc.dll
+load_backend: loaded CPU backend from C:\llama\bin\ggml-cpu-alderlake.dll
+| model                          |       size |     params | backend    | ngl |            test |                  t/s |
+| ------------------------------ | ---------: | ---------: | ---------- | --: | --------------: | -------------------: |
+| qwen35 9B Q4_K - Medium        |   5.28 GiB |     8.95 B | CUDA       |  99 |    pp1024+tg256 |        183.07 ± 6.49 |
+
+build: 8642541b2 (11960)
