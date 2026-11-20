@@ -30,7 +30,7 @@ scripts/                 measurement and analysis scripts
 data/raw/plug_validation plug readings during the first validation tests
 data/raw/sweeps          one CSV per run (1 s samples), runs.csv, sweep plans, llama-bench logs
 data/raw/idle            idle baseline log and summary
-data/tasks/              task data created by prepare_data.py (not generated yet)
+data/tasks/              task files created by prepare_data.py from the CFPB archive
 results/                 summary tables and plots computed from data/raw
 ```
 
@@ -104,13 +104,24 @@ Two observations so far:
 - `analyze_sweep.py` also drops any run with a logging gap longer than 5 s.
 - `job_profile.csv` is the per-job summary used as input for the scheduler.
 
-## Task data (not included)
+## Task data
 
-The task data comes from the **CFPB Consumer Complaint Database** narrative archive (FOIA Electronic Reading Room), file `CCDB_Export_16_March_2026.zip` (22 MB; SHA-256 `0d337dac973d1fdf874c1d9cd5909502bb29a71334543572f0b1aedcd5a58d24`). The ZIP is not stored in this repository. After downloading it:
+The task files in `data/tasks/` come from the **CFPB Consumer Complaint Database** narrative archive (FOIA Electronic Reading Room), file `CCDB_Export_16_March_2026.zip` (22 MB; SHA-256 `0d337dac973d1fdf874c1d9cd5909502bb29a71334543572f0b1aedcd5a58d24`). The ZIP is not stored in this repository; the task files can be recreated from it with:
 
 ```bash
 python scripts/prepare_data.py --zip CCDB_Export_16_March_2026.zip --out data/tasks
 ```
+
+Word limits were chosen from the length distribution of all narratives (10th percentile 50 words, median 158, 75th percentile 270, 99th percentile 984): classification uses complaints of 50–269 words, summarization 270–1,000 words. With seed 42 the script produces the same files every time; `manifest.json` records the parameters and the SHA-256 of the source ZIP and of every output file.
+
+| File | Rows | Use |
+|---|---|---|
+| `classify_test.jsonl` | 480 | routing (8 products × 60) |
+| `classify_dev.jsonl` | 80 | prompt development only (8 × 10) |
+| `summarize_test.jsonl` | 120 | case summaries |
+| `summarize_dev.jsonl` | 10 | prompt development only |
+| `synth_spec.jsonl` | 32 | synthetic complaints (4 most frequent issues per product) |
+| `tr_subset.jsonl` | 50 | Turkish side measurement (to be translated) |
 
 ## Team
 

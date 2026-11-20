@@ -1,0 +1,123 @@
+{
+  "products": [
+    "Debt collection",
+    "Checking or savings account",
+    "Credit card",
+    "Money transfer, virtual currency, or money service",
+    "Mortgage",
+    "Vehicle loan or lease",
+    "Credit reporting or other personal consumer reports",
+    "Student loan"
+  ],
+  "issues_by_product": {
+    "Debt collection": [
+      "Attempts to collect debt not owed",
+      "Written notification about debt",
+      "False statements or representation",
+      "Took or threatened to take negative or legal action",
+      "Communication tactics",
+      "Electronic communications",
+      "Threatened to contact someone or share information improperly"
+    ],
+    "Checking or savings account": [
+      "Managing an account",
+      "Problem with a lender or other company charging your account",
+      "Closing an account",
+      "Opening an account",
+      "Problem caused by your funds being low",
+      "Incorrect information on your report",
+      "Problem with a company's investigation into an existing problem",
+      "Problem with fraud alerts or security freezes",
+      "Improper use of your report",
+      "Credit monitoring or identity theft protection services"
+    ],
+    "Credit card": [
+      "Problem with a purchase shown on your statement",
+      "Other features, terms, or problems",
+      "Fees or interest",
+      "Getting a credit card",
+      "Closing your account",
+      "Problem when making payments",
+      "Advertising and marketing, including promotional offers",
+      "Incorrect information on your report",
+      "Trouble using your card",
+      "Problem with a company's investigation into an existing problem",
+      "Struggling to pay your bill",
+      "Improper use of your report",
+      "Credit monitoring or identity theft protection services",
+      "Problem with fraud alerts or security freezes",
+      "Unable to get your credit report or credit score"
+    ],
+    "Money transfer, virtual currency, or money service": [
+      "Fraud or scam",
+      "Unauthorized transactions or other transaction problem",
+      "Other transaction problem",
+      "Trouble accessing funds in your mobile or digital wallet",
+      "Money was not available when promised",
+      "Managing, opening, or closing your mobile wallet account",
+      "Other service problem",
+      "Confusing or missing disclosures",
+      "Unexpected or other fees",
+      "Problem with customer service",
+      "Wrong amount charged or received",
+      "Confusing or misleading advertising or marketing",
+      "Lost or stolen money order",
+      "Problem adding money",
+      "Overdraft, savings, or rewards features"
+    ],
+    "Mortgage": [
+      "Trouble during payment process",
+      "Struggling to pay mortgage",
+      "Applying for a mortgage or refinancing an existing mortgage",
+      "Closing on a mortgage",
+      "Incorrect information on your report",
+      "Problem with a company's investigation into an existing problem",
+      "Improper use of your report",
+      "Unable to get your credit report or credit score",
+      "Problem with fraud alerts or security freezes"
+    ],
+    "Vehicle loan or lease": [
+      "Managing the loan or lease",
+      "Repossession",
+      "Problems at the end of the loan or lease",
+      "Getting a loan or lease",
+      "Incorrect information on your report",
+      "Struggling to pay your loan",
+      "Problem with a company's investigation into an existing problem",
+      "Improper use of your report",
+      "Credit monitoring or identity theft protection services",
+      "Unable to get your credit report or credit score"
+    ],
+    "Credit reporting or other personal consumer reports": [
+      "Incorrect information on your report",
+      "Improper use of your report",
+      "Problem with a company's investigation into an existing problem",
+      "Credit monitoring or identity theft protection services",
+      "Unable to get your credit report or credit score",
+      "Problem with fraud alerts or security freezes"
+    ],
+    "Student loan": [
+      "Dealing with your lender or servicer",
+      "Struggling to repay your loan",
+      "Incorrect information on your report",
+      "Problem with a company's investigation into an existing problem",
+      "Improper use of your report",
+      "Getting a loan",
+      "Issue where my lender is my school",
+      "Credit monitoring or identity theft protection services",
+      "Issue with income share agreement",
+      "Problem with fraud alerts or security freezes",
+      "Unable to get your credit report or credit score"
+    ]
+  },
+  "narratives_per_product_in_source": {
+    "Debt collection": 8263,
+    "Checking or savings account": 3450,
+    "Credit card": 3362,
+    "Money transfer, virtual currency, or money service": 1664,
+    "Mortgage": 1257,
+    "Vehicle loan or lease": 1028,
+    "Credit reporting or other personal consumer reports": 816,
+    "Student loan": 704
+  }
+}

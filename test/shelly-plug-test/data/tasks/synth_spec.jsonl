@@ -1,0 +1,32 @@
+{"id": "synth_001", "product": "Debt collection", "issue": "Attempts to collect debt not owed"}
+{"id": "synth_002", "product": "Debt collection", "issue": "Written notification about debt"}
+{"id": "synth_003", "product": "Debt collection", "issue": "False statements or representation"}
+{"id": "synth_004", "product": "Debt collection", "issue": "Took or threatened to take negative or legal action"}
+{"id": "synth_005", "product": "Checking or savings account", "issue": "Managing an account"}
+{"id": "synth_006", "product": "Checking or savings account", "issue": "Problem with a lender or other company charging your account"}
+{"id": "synth_007", "product": "Checking or savings account", "issue": "Closing an account"}
+{"id": "synth_008", "product": "Checking or savings account", "issue": "Opening an account"}
+{"id": "synth_009", "product": "Credit card", "issue": "Problem with a purchase shown on your statement"}
+{"id": "synth_010", "product": "Credit card", "issue": "Other features, terms, or problems"}
+{"id": "synth_011", "product": "Credit card", "issue": "Fees or interest"}
+{"id": "synth_012", "product": "Credit card", "issue": "Getting a credit card"}
+{"id": "synth_013", "product": "Money transfer, virtual currency, or money service", "issue": "Fraud or scam"}
+{"id": "synth_014", "product": "Money transfer, virtual currency, or money service", "issue": "Unauthorized transactions or other transaction problem"}
+{"id": "synth_015", "product": "Money transfer, virtual currency, or money service", "issue": "Other transaction problem"}
+{"id": "synth_016", "product": "Money transfer, virtual currency, or money service", "issue": "Trouble accessing funds in your mobile or digital wallet"}
+{"id": "synth_017", "product": "Mortgage", "issue": "Trouble during payment process"}
+{"id": "synth_018", "product": "Mortgage", "issue": "Struggling to pay mortgage"}
+{"id": "synth_019", "product": "Mortgage", "issue": "Applying for a mortgage or refinancing an existing mortgage"}
+{"id": "synth_020", "product": "Mortgage", "issue": "Closing on a mortgage"}
+{"id": "synth_021", "product": "Vehicle loan or lease", "issue": "Managing the loan or lease"}
+{"id": "synth_022", "product": "Vehicle loan or lease", "issue": "Repossession"}
+{"id": "synth_023", "product": "Vehicle loan or lease", "issue": "Problems at the end of the loan or lease"}
+{"id": "synth_024", "product": "Vehicle loan or lease", "issue": "Getting a loan or lease"}
+{"id": "synth_025", "product": "Credit reporting or other personal consumer reports", "issue": "Incorrect information on your report"}
+{"id": "synth_026", "product": "Credit reporting or other personal consumer reports", "issue": "Improper use of your report"}
+{"id": "synth_027", "product": "Credit reporting or other personal consumer reports", "issue": "Problem with a company's investigation into an existing problem"}
+{"id": "synth_028", "product": "Credit reporting or other personal consumer reports", "issue": "Credit monitoring or identity theft protection services"}
+{"id": "synth_029", "product": "Student loan", "issue": "Dealing with your lender or servicer"}
+{"id": "synth_030", "product": "Student loan", "issue": "Struggling to repay your loan"}
+{"id": "synth_031", "product": "Student loan", "issue": "Incorrect information on your report"}
+{"id": "synth_032", "product": "Student loan", "issue": "Problem with a company's investigation into an existing problem"}
