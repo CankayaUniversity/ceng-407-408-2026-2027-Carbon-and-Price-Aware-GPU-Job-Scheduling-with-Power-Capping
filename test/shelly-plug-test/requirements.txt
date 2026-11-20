@@ -1,0 +1,6 @@
+requests
+pandas
+matplotlib
+nvidia-ml-py
+cupy-cuda12x  # only for the matrix-multiplication load in measure_run.py
+wmi; sys_platform == "win32"  # only for battery logging in plug_check.py
