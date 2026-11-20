@@ -1,0 +1,12 @@
+job,setting,clock_mhz,n_runs,duration_s,duration_sd_s,duration_h,energy_wh,energy_sd_wh,energy_kwh,above_idle_wh,avg_wall_w,max_gpu_temp_c,job_description
+llm_qwen35_9b_27req,lgc_900,900,3,258.4,5.8,0.07178,6.203,0.026,0.006203,4.272,86.4,65,"Qwen3.5-9B Q4_K_M, 27 requests x (1024 prompt + 256 generated tokens), llama-bench -pg"
+llm_qwen35_9b_27req,lgc_1200,1200,3,205.4,0.6,0.05706,5.32,0.02,0.00532,3.785,93.2,66,"Qwen3.5-9B Q4_K_M, 27 requests x (1024 prompt + 256 generated tokens), llama-bench -pg"
+llm_qwen35_9b_27req,lgc_1500,1500,3,193.4,6.7,0.05372,5.275,0.111,0.005275,3.83,98.2,70,"Qwen3.5-9B Q4_K_M, 27 requests x (1024 prompt + 256 generated tokens), llama-bench -pg"
+llm_qwen35_9b_27req,lgc_1800,1800,3,189.4,5.7,0.05261,5.689,0.063,0.005689,4.274,108.2,75,"Qwen3.5-9B Q4_K_M, 27 requests x (1024 prompt + 256 generated tokens), llama-bench -pg"
+llm_qwen35_9b_27req,lgc_2100,2100,3,179.4,0.6,0.04983,5.963,0.08,0.005963,4.623,119.7,81,"Qwen3.5-9B Q4_K_M, 27 requests x (1024 prompt + 256 generated tokens), llama-bench -pg"
+llm_qwen35_9b_27req,full,2412,3,180.7,4.6,0.0502,7.049,0.008,0.007049,5.699,140.5,90,"Qwen3.5-9B Q4_K_M, 27 requests x (1024 prompt + 256 generated tokens), llama-bench -pg"
+matmul_1990,lgc_900,900,3,267.4,0.6,0.07428,5.533,0.085,0.005533,3.535,74.4,66,"1990 x 6144x6144 fp32 matrix multiplications (synthetic, compute-bound)"
+matmul_1990,lgc_1200,1200,3,200.1,0.0,0.05558,4.588,0.136,0.004588,3.093,82.5,70,"1990 x 6144x6144 fp32 matrix multiplications (synthetic, compute-bound)"
+matmul_1990,lgc_1500,1500,3,159.8,0.4,0.04439,4.372,0.088,0.004372,3.178,98.4,76,"1990 x 6144x6144 fp32 matrix multiplications (synthetic, compute-bound)"
+matmul_1990,lgc_1800,1800,3,133.8,0.6,0.03717,4.543,0.055,0.004543,3.543,122.3,88,"1990 x 6144x6144 fp32 matrix multiplications (synthetic, compute-bound)"
+matmul_1990,full,1987,3,123.4,2.1,0.03427,4.744,0.037,0.004744,3.822,138.4,89,"1990 x 6144x6144 fp32 matrix multiplications (synthetic, compute-bound)"
