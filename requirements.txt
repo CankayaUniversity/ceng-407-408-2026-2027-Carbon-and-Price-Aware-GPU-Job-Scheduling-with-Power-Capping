@@ -1,0 +1,5 @@
+eptr2==1.4.0
+matplotlib==3.9.2
+pandas==2.3.3
+pyarrow==23.0.1
+python-dotenv==1.1.0
