@@ -5,7 +5,7 @@ Method (see notebooks/EPIAS_eda.ipynb)
 
 import pandas as pd
 
-from data_pipeline.config import RAW_DIR, PROCESSED_DIR, HOURLY_PATH, EMISSION_FACTORS
+from config import RAW_DIR, PROCESSED_DIR, HOURLY_PATH, EMISSION_FACTORS
 
 RT_GEN_META = {"date", "hour", "total", "importExport", "fetched_at"}
 REPORT_COLUMNS = ["ptf_try", "gen_licensed_mwh", "gen_unlicensed_mwh", "ci"]
