@@ -1,0 +1,67 @@
+{
+  "created_utc": "2026-11-20T15:26:29.605491+00:00",
+  "source": "CFPB Consumer Complaint Database narratives archive (FOIA Electronic Reading Room)",
+  "source_url": "https://www.consumerfinance.gov/foia-requests/foia-electronic-reading-room/cfpb-consumer-complaint-database-narratives-archive/",
+  "source_file": "CCDB_Export_16_March_2026.zip",
+  "inner_csv": "CCDB_Export_16_March_2026.csv",
+  "source_sha256": "0d337dac973d1fdf874c1d9cd5909502bb29a71334543572f0b1aedcd5a58d24",
+  "rows_total": 614945,
+  "rows_with_narrative": 21640,
+  "duplicates_dropped": 2780,
+  "seed": 42,
+  "params": {
+    "products": 8,
+    "classify_per_product": 60,
+    "classify_dev_per_product": 10,
+    "summarize": 120,
+    "summarize_dev": 10,
+    "classify_words": [
+      50,
+      270
+    ],
+    "summarize_words": [
+      270,
+      1000
+    ]
+  },
+  "files": {
+    "classify_test.jsonl": {
+      "rows": 480,
+      "sha256": "c8266fd10f7ed28a3b9e264786ab5c57587684f305be50f5cecc8093043ef40f"
+    },
+    "classify_dev.jsonl": {
+      "rows": 80,
+      "sha256": "b3a3fee67775cd872e9873bc65fd1922bcf62c7e06314c78f0c3a8454b1676eb"
+    },
+    "summarize_test.jsonl": {
+      "rows": 120,
+      "sha256": "d8fd439130f250abe7b596366c1662bc3aa0747b23c778d4cb8f68512fc659b1"
+    },
+    "summarize_dev.jsonl": {
+      "rows": 10,
+      "sha256": "3d8d18d7dbab1523c13046a55c93835c709988b7f48d30b5891c44ffc76f73da"
+    },
+    "synth_spec.jsonl": {
+      "rows": 32,
+      "sha256": "4f964bc131929aa23b212597c08143f3a1ec0306df6e07cc00e5c19d7f096917"
+    },
+    "tr_subset.jsonl": {
+      "rows": 50,
+      "sha256": "4625d37e88c7fafa30f83ae8272b64a8b33caa40681390f43ab9bbee09990630"
+    }
+  },
+  "word_stats": {
+    "classify_test": {
+      "n": 480,
+      "min": 50,
+      "median": 153,
+      "max": 269
+    },
+    "summarize_test": {
+      "n": 120,
+      "min": 270,
+      "median": 371,
+      "max": 876
+    }
+  }
+}
