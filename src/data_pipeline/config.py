@@ -18,6 +18,11 @@ RATE_LIMIT_WAIT_S = 60
 
 
 # tCO2/MWh (= kgCO2/kWh)
+# Fossil: T.C. ETKB, "Türkiye Elektrik Üretimi ve Elektrik Tüketim Noktası
+#   Emisyon Faktörleri (2023)", 2025.
+# Geothermal: M. Akın, T. Orucu, T. Fridriksson, "Characterizing the Declining
+#   CO2 Emissions from Turkish Geothermal Power Plants", Stanford Geothermal
+#   Workshop, 2020.
 EMISSION_FACTORS = {
     "lignite": 1.122, "asphaltiteCoal": 1.078, "blackCoal": 1.045,
     "importCoal": 0.800, "naturalGas": 0.400, "lng": 0.400,
