@@ -45,3 +45,9 @@ Experiments must not use the whole table: fix a date range in the experiment's o
 - Geothermal = 0.58 tCO₂/MWh (measured Turkish value); Ulutaş and Kurt use 0.
 - Unlicensed generation is settlement-based grid injection, a lower bound, so `ci` may be slightly overstated.
 - `ci` is an average, not a marginal, intensity.
+
+## References
+
+- Ulutaş, T. & Kurt, Ü. (2026). *Electricity*, 7(4), 123. https://doi.org/10.3390/electricity7040123
+- T.C. ETKB (2025). "Türkiye Elektrik Üretimi ve Elektrik Tüketim Noktası Emisyon Faktörleri (2023)". Fossil emission factors.
+- Akın, M., Orucu, T. & Fridriksson, T. (2020). "Characterizing the Declining CO2 Emissions from Turkish Geothermal Power Plants". Stanford Geothermal Workshop. Geothermal factor (0.58).

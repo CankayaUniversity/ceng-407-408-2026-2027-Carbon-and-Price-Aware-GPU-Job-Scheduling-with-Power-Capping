@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 import pandas as pd
 from eptr2 import EPTR2
 
-from data_pipeline.config import START, END, CALLS, RAW_DIR, REQUEST_DELAY_S, RATE_LIMIT_WAIT_S
+from config import START, END, CALLS, RAW_DIR, REQUEST_DELAY_S, RATE_LIMIT_WAIT_S
 eptr = EPTR2(use_dotenv=True, recycle_tgt=True)
 
 
