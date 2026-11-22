@@ -2,6 +2,8 @@
 
 Builds an hourly table of electricity price and grid carbon intensity for Türkiye from EPİAŞ Transparency Platform data.
 
+Current range: 2021-01 to 2026-09
+
 ## Run
 
 Requires `pip install -r requirements.txt` and EPİAŞ credentials in `.env`.
@@ -12,6 +14,16 @@ python src/data_pipeline/build_dataset.py   # 2. build the table   -> data/proce
 ```
 
 The date range is set in `config.py` (`START`, `END`). `END` must be at least ~2 months ago, because unlicensed generation (`ren-ul-gen`) is published with a delay. `build_dataset.py` prints a report (missing hours, share of hours with carbon intensity).
+
+## Updating the data
+
+The file is always `data/processed/hourly.parquet`; versions are tracked with git, not file names.
+
+1. Move `END` forward in `config.py`, then run `fetch_data.py` and `build_dataset.py`.
+2. Check the report, and check that values in the old range did not change (`rt-gen` can be revised later).
+3. Update "Current range" above, commit, then `git tag data-YYYY-MM` and `git push origin data-YYYY-MM`.
+
+Experiments must not use the whole table: fix a date range in the experiment's own config, and state which data tag the results were produced with.
 
 ## Output: `data/processed/hourly.parquet`
 
