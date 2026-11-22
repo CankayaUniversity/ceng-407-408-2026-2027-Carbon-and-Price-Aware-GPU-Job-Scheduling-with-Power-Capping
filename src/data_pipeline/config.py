@@ -10,7 +10,7 @@ HOURLY_PATH = PROCESSED_DIR / "hourly.parquet"
 # Download range
 START = "2021-01"   # first month
 END = "2026-09"     # last month; ren-ul-gen is published with a 1-2 month delay
-CALLS = ["ptf", "rt-gen", "ren-ul-gen", "rt-cons"]
+CALLS = ["ptf", "rt-gen", "ren-ul-gen"]
 
 # EPİAŞ rate limit
 REQUEST_DELAY_S = 1        
