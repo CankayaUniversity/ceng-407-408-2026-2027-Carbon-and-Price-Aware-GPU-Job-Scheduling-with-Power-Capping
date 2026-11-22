@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(**/.env*)",
+      "Edit(**/.env*)",
+      "Write(**/.env*)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/secrets/**)",
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Read(**/.eptr2-tgt)",
+      "Bash(rm -rf *)",
+      "Bash(sudo *)",
+      "Bash(curl *)",
+      "Bash(wget *)",
+      "Bash(env*)",
+      "Bash(printenv*)"
+    ],
+    "ask": [
+      "Bash(*)",
+      "WebFetch"
+    ],
+    "allow": [
+      "Bash(git status)",
+      "Bash(git diff)",
+      "Bash(git diff --stat)",
+      "Bash(git log *)"
+    ]
+  }
+}
