@@ -79,6 +79,15 @@ Idle is measured again in every session: 28.1 W on 18 Nov, 15.1 W on 22 Nov (cau
 - A simple formula fitted to measurements beats every LLM level.
 - **Proposal:** let the LLM turn the job description into parameters, and let a measurement-based formula compute duration and energy.
 
+### Prompt (English translation)
+
+The prompt is built from blocks; level A uses blocks 3–4, level B adds block 1, level C adds blocks 1 and 2.
+
+1. **Guideline (B, C):** Hardware and measurement context: laptop, NVIDIA GeForce RTX 3060 Laptop GPU (6 GB), Windows 11. GPU power limit: 70 W by default, up to ~85 W with Dynamic Boost. GPU core clock under load in default mode is about 1650 MHz; with a clock lock (e.g. 1200 MHz) the GPU runs at that fixed frequency, the VRAM clock does not change. Measurement: the laptop's wall power (plug meter); idle wall power is 28.1 W. Net energy = wall energy during the job − 28.1 W × duration. Physical frame: energy = power × time; for compute-bound jobs duration is roughly inversely proportional to frequency; power rises with frequency and voltage.
+2. **Measured examples (C):** "Measured results of the same kind of job on this machine:" followed by the three Test 1 runs (iterations, clock, duration, mean wall power, net energy).
+3. **Job:** "GPU: NVIDIA GeForce RTX 3060 Laptop GPU (laptop). Job: *N* 4096×4096 fp16 matrix multiplications with PyTorch (torch.matmul, CUDA). Setting: GPU core clock locked to *X* MHz (nvidia-smi -lgc)" or "default GPU clock (no lock)".
+4. **Instruction:** "Do NOT run this job. Only predict how long it would take on this GPU, the mean wall power and the net energy. If information is missing, make reasonable assumptions and state them in the reasoning."
+
 ## Job profile (scheduler input)
 
 The amount of work is given in the job's own unit (here: number of matrix multiplications), because duration and energy change with the GPU setting while the work does not. `results/job_profile.csv` lists duration and energy per job and GPU setting, with the same columns as `test/shelly-plug-test/results/job_profile.csv`, plus per-1000-unit columns for scaling to other job sizes.
@@ -143,7 +152,7 @@ The clock lock (`nvidia-smi -lgc 1500,1500`, reset with `nvidia-smi -rgc`) needs
 
 - Each run folder in `data/raw/` holds `samples.csv` (1 s samples), `events.jsonl` (errors, missed samples) and `meta.json` (settings and summary).
 - `data/raw/notes.json` lists which runs are invalid and why. Invalid runs are kept but not used.
-- **LLM prompts are in Turkish.** `llm_predictions.jsonl` stores the full prompt of every prediction exactly as sent; `llm_predict.py` keeps this text unchanged so repeat runs use the same experiment. The answer fields are `sure_s` (duration, s), `duvar_gucu_w` (wall power, W), `net_enerji_wh` (net energy, Wh) and `gerekce` (reasoning). Records from 19 Nov also use Turkish record keys (`seviye` = level, `tahmin` = prediction); `compare_predictions.py` reads both.
+- **LLM prompts are in Turkish.** `llm_predictions.jsonl` stores the full prompt of every prediction exactly as sent, and the LLM's answer (also in Turkish). `llm_predict.py` keeps the prompt text and answer schema unchanged so repeat runs use the same experiment. The answer fields are `sure_s` (duration, s), `duvar_gucu_w` (wall power, W), `net_enerji_wh` (net energy, Wh) and `gerekce` (reasoning). An English translation is in *Prompt (English translation)* above.
 - `llm_predictions_trial.jsonl` holds trial requests, including one with a faulty prompt (GPU name missing); these are not used in the results.
 - The 18 and 22 Nov measurements were started by an AI coding agent on the user's request, before the rule in `CONTRIBUTING.md` existed. Later measurements are started by a person.
-- **Privacy cleanup:** the machine name, plug address, plug MAC and GPU UUID were removed from run folder names, `meta.json` and `events.jsonl` before merging (repository is public). No measured value was changed; `samples.csv` files are byte-identical and all result tables were recomputed and checked to be identical. `recorder.py` no longer writes these fields.
+- **Cleanup before merging:** the machine name, plug address, plug MAC and GPU UUID were removed from run folder names, `meta.json` and `events.jsonl` (the repository is public), and Turkish free-text notes, one event message and the record keys of the LLM logs were translated to English. No measured value, prompt or LLM answer was changed; `samples.csv` files are byte-identical and all result tables were recomputed and checked to be identical. `recorder.py` no longer writes the removed fields.

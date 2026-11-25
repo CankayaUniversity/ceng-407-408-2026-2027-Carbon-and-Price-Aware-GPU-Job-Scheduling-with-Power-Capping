@@ -30,13 +30,6 @@ ANSWER_FIELDS = {"duration_s": "sure_s", "wall_w": "duvar_gucu_w",
                  "net_wh": "net_enerji_wh"}
 
 
-def normalize(rec):
-  """Records from 19 Nov use Turkish keys; newer ones use English keys."""
-  return {"level": rec.get("level", rec.get("seviye")),
-          "prediction": rec.get("prediction", rec.get("tahmin")),
-          "model": rec["model"], "iters": rec["iters"], "mhz": rec["mhz"]}
-
-
 def interpolate(points, f):
   """points: [(mhz, value)], linear inter-/extrapolation by clock."""
   p = sorted(points)
@@ -78,7 +71,7 @@ def main():
     measured = [r for r in csv.DictReader(f)
                 if r["kind"] == "job" and r["valid"] == "True"]
   with open(a.predictions, encoding="utf-8") as f:
-    preds = [r for r in map(normalize, map(json.loads, f))
+    preds = [r for r in map(json.loads, f)
              if r["prediction"] and r["model"].startswith(a.model)]
 
   # Reference runs are not tests (the LLM was given their answers).
