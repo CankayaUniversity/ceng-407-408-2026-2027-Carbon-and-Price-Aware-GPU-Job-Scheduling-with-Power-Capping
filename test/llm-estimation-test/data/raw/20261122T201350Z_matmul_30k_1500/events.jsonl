@@ -1,0 +1,2 @@
+{"t_utc": "2026-11-22T20:14:17.604+00:00", "kind": "error", "source": "shelly", "msg": "ReadTimeout(ReadTimeoutError(\"HTTPConnectionPool(host='<plug>', port=80): Read timed out. (read timeout=0.8)\"))"}
+{"t_utc": "2026-11-22T20:16:09.104+00:00", "kind": "error", "source": "shelly", "msg": "ReadTimeout(ReadTimeoutError(\"HTTPConnectionPool(host='<plug>', port=80): Read timed out. (read timeout=0.8)\"))"}

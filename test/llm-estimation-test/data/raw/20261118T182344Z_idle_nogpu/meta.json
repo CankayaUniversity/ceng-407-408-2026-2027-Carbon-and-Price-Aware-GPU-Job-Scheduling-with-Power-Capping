@@ -1,0 +1,57 @@
+{
+  "run_id": "20261118T182344Z_idle_nogpu",
+  "label": "idle_nogpu",
+  "note": "NVML kapali, ekran acik (keep_awake), uygulamalar kapali, sarj siniri %80; ilk 20 sn GPU uyuma payi",
+  "start_utc": "2026-11-18T18:23:44.637+00:00",
+  "args": {
+    "ip": "<plug>",
+    "label": "idle_nogpu",
+    "interval": 1.0,
+    "duration": 200.0,
+    "outdir": "runs",
+    "gpu_index": 0,
+    "no_gpu": true,
+    "note": "NVML kapali, ekran acik (keep_awake), uygulamalar kapali, sarj siniri %80; ilk 20 sn GPU uyuma payi"
+  },
+  "os": "Windows-11-10.0.26300-SP0",
+  "python": "3.15.2 (tags/v3.15.2:5e58eaa, Oct 25 2026, 17:27:03) [MSC v.1951 64 bit (AMD64)]",
+  "cpu_logical": 20,
+  "gpu": null,
+  "shelly": {
+    "model": "S3PL-30110EU",
+    "gen": 3,
+    "fw_id": "20251209-070625/geeb7eab",
+    "ver": "1.8.99-plugmg3prod0",
+    "app": "PlugMG3"
+  },
+  "battery": {
+    "psutil_percent": 80,
+    "psutil_plugged": true,
+    "full_charged_mwh": "51830",
+    "design_mwh": null
+  },
+  "time_sync_start": "Leap Indicator: 3(not synchronized)\nStratum: 0 (unspecified)\nPrecision: -23 (119.209ns per tick)\nRoot Delay: 0.0672864s\nRoot Dispersion: 10.2972845s\nReferenceId: 0x00000000 (unspecified)\nLast Successful Sync Time: 18.11.2026 19:21:57\nSource: time.windows.com,0x9 \nPoll Interval: 10 (1024s)",
+  "end_utc": "2026-11-18T18:27:05.460+00:00",
+  "stop_reason": "duration",
+  "missed_slots": 0,
+  "event_counts": {},
+  "time_sync_end": "Leap Indicator: 3(not synchronized)\nStratum: 0 (unspecified)\nPrecision: -23 (119.209ns per tick)\nRoot Delay: 0.0672864s\nRoot Dispersion: 10.2972845s\nReferenceId: 0x00000000 (unspecified)\nLast Successful Sync Time: 18.11.2026 19:21:57\nSource: time.windows.com,0x9 \nPoll Interval: 10 (1024s)",
+  "summary": {
+    "n_samples": 200,
+    "duration_s": 199.0,
+    "wall_wh_counter": 1.458,
+    "wall_wh_trapz": 1.54,
+    "wall_trapz_covered_s": 199.0,
+    "wall_gaps_excluded_s": [],
+    "wall_samples_ok": 200,
+    "wall_w_mean": 27.95,
+    "wall_w_max": 57.6,
+    "gpu_wh_counter": null,
+    "bat_delta_mwh": 0,
+    "bat_discharging_samples": 0,
+    "bat_discharge_mw_max": 0,
+    "bat_charging_samples": 0,
+    "slot_late_ms_max": 14.0,
+    "slot_late_ms_mean": 0.48
+  }
+}
