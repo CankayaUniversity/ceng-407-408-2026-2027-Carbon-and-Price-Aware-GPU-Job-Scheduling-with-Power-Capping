@@ -1,7 +1,7 @@
 {
   "run_id": "20261118T172953Z_idle",
   "label": "idle",
-  "note": "tekrar: uygulamalar kapali (chrome, spotify, onenote, warp), sarj siniri %80",
+  "note": "repeat: apps closed (chrome, spotify, onenote, warp), charge limit 80%",
   "start_utc": "2026-11-18T17:29:53.911+00:00",
   "args": {
     "ip": "<plug>",
@@ -10,7 +10,7 @@
     "duration": 180.0,
     "outdir": "runs",
     "gpu_index": 0,
-    "note": "tekrar: uygulamalar kapali (chrome, spotify, onenote, warp), sarj siniri %80"
+    "note": "repeat: apps closed (chrome, spotify, onenote, warp), charge limit 80%"
   },
   "os": "Windows-11-10.0.26300-SP0",
   "python": "3.15.2 (tags/v3.15.2:5e58eaa, Oct 25 2026, 17:27:03) [MSC v.1951 64 bit (AMD64)]",
