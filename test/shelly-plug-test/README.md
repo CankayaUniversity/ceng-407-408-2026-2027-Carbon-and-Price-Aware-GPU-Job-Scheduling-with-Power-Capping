@@ -123,6 +123,107 @@ Word limits were chosen from the length distribution of all narratives (10th per
 | `synth_spec.jsonl` | 32 | synthetic complaints (4 most frequent issues per product) |
 | `tr_subset.jsonl` | 50 | Turkish side measurement (to be translated) |
 
+## Running the tasks
+
+These tools send sequential requests to an already running llama-server. They do not
+start the server, change GPU clocks, or read the plug. Use the fixed Qwen3.5-9B
+Q4_K_M GGUF and llama.cpp build b11960 for the intended experiment. Start the
+server yourself, with all model layers on the GPU (replace the model placeholder):
+
+```powershell
+llama-server -m <MODEL_PATH> -ngl 99 -c 4096 --parallel 1 --seed 42 --jinja --host 127.0.0.1 --port 8080
+```
+
+The GGUF path belongs to this server command. The runner takes `--server-url` and
+optionally `--model` for a server model identifier; it never loads a model file.
+Install dependencies with `python -m pip install -r requirements.txt` in an
+environment appropriate for the measurement scripts. The task tools themselves
+need only Python and `requests`; their tests additionally need `pytest`.
+
+Run the following commands from `test/shelly-plug-test/`. Start with the dev files:
+
+```powershell
+python scripts/run_tasks.py --task classify --input data/tasks/classify_dev.jsonl --out-dir outputs --limit 5
+python scripts/run_tasks.py --task summarize --input data/tasks/summarize_dev.jsonl --out-dir outputs --limit 5
+python scripts/run_tasks.py --task synth --input data/tasks/synth_spec.jsonl --out-dir outputs --limit 5
+```
+
+There is no separate synth dev file. The last command uses five existing specs
+without changing them. Full runs use:
+
+```powershell
+python scripts/run_tasks.py --task classify --input data/tasks/classify_test.jsonl --server-url http://127.0.0.1:8080 --out-dir outputs
+python scripts/run_tasks.py --task summarize --input data/tasks/summarize_test.jsonl --server-url http://127.0.0.1:8080 --out-dir outputs
+python scripts/run_tasks.py --task synth --input data/tasks/synth_spec.jsonl --server-url http://127.0.0.1:8080 --out-dir outputs
+```
+
+Classification loads the eight products from `labels.json` next to the input;
+`--labels <path>` overrides it. Each request uses temperature 0, seed 42,
+`cache_prompt=false`, `enable_thinking=false`, and a token cap of 16, 160 or 400
+for classify, summarize or synth respectively. Requests run one at a time. The
+per-attempt timeout defaults to 300 seconds and is configurable with `--timeout`.
+A failed HTTP request or malformed completion is retried at most twice. A
+completion containing `<think>`, or a non-empty `reasoning_content` field (llama-server can
+move thinking text there), is recorded as a failed item without retrying it.
+Token-limit completions retain their `finish_reason`; quality checks happen later.
+
+Each invocation writes `<task>_<YYYYmmdd_HHMMSS>.jsonl` (UTC) and a sibling
+`_summary.json`. The runner refuses to overwrite an existing output filename.
+Every input item has a row, including explicit `error` rows for failed requests;
+the command exits nonzero if any item failed. Summary token totals cover accepted
+responses; failed attempts may consume additional server work. The summary
+records input and output hashes, all effective messages and request parameters,
+counts, and request-loop wall time. The output hash is SHA-256 of stripped texts
+concatenated in input order as UTF-8, without separators. Model outputs and these
+summaries are ignored by Git.
+
+Evaluate after the job, outside measurement. Replace the output placeholders with
+the paths printed by the runner:
+
+```powershell
+python scripts/evaluate_outputs.py <CLASSIFY_OUTPUT.jsonl> --input data/tasks/classify_test.jsonl
+python scripts/evaluate_outputs.py <SUMMARIZE_OUTPUT.jsonl> --input data/tasks/summarize_test.jsonl
+python scripts/evaluate_outputs.py <SYNTH_OUTPUT.jsonl> --input data/tasks/synth_spec.jsonl
+python scripts/evaluate_outputs.py <SUMMARIZE_OUTPUT.jsonl> --input data/tasks/summarize_test.jsonl --reclassify --server-url http://127.0.0.1:8080
+python scripts/evaluate_outputs.py <SYNTH_OUTPUT.jsonl> --input data/tasks/synth_spec.jsonl --reclassify --server-url http://127.0.0.1:8080
+python scripts/compare_outputs.py <RUN_A.jsonl> <RUN_B.jsonl>
+```
+
+Evaluation writes `<outputs.jsonl>_eval.json` and a short table. Rows join by id;
+missing inputs, failed items, and unparseable labels are reported. Classification
+accuracy includes failed outputs as incorrect; macro-F1 averages all eight labels,
+assigning zero where there is no support or prediction. Sentence counts use a
+punctuation heuristic that preserves decimal numbers but may split abbreviations.
+Synthetic near duplicates share the first 200 characters after case and whitespace
+normalization; exact duplicates match the complete saved text. Optional
+reclassification makes additional GPU requests, and must run outside measurement.
+With `--limit`, evaluate against the same input file; `n_missing` reports its
+unprocessed rows. A comparison exits zero only for matching id sets and identical
+valid text for every id. Passing it demonstrates equality for those runs only;
+temperature 0 and a fixed seed do not establish equality across GPU settings.
+
+For a later, explicitly authorized measurement, run from `scripts/` in an
+administrator PowerShell window. The server must already be running:
+
+```powershell
+python sweep.py --plug-ip <IP> --plan classify_plan.csv --clocks 900 1200 1500 1800 2100 full --command "python run_tasks.py --task classify --input ..\data\tasks\classify_test.jsonl --server-url http://127.0.0.1:8080 --out-dir ..\outputs"
+```
+
+This example uses existing hardware measurement scripts; no sweep is required to
+test the task tools. The existing control run still uses the matrix workload.
+Job timing for these tasks excludes server startup and model loading because the
+server stays up. Do not compare it directly to earlier llama-bench timings that
+included model loading without stating this difference.
+
+GPU-free tests use a local fake HTTP server with canned completions:
+
+```powershell
+python -m pytest tests -q
+```
+
+The same tests also run with `python -m unittest discover -s tests -v` when
+pytest is unavailable.
+
 ## Team
 
 See the project wiki.
