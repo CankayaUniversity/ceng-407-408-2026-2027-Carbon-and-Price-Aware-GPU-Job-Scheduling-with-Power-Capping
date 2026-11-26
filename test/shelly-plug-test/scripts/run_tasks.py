@@ -22,6 +22,7 @@ REQUEST_DEFAULTS = {
     "stream": False,
 }
 RETRIES = 2
+RETRY_WAIT_S = 2
 
 
 def read_jsonl(path):
@@ -97,7 +98,22 @@ def request_completion(session, server_url, payload, timeout):
         except (requests.RequestException, ValueError, KeyError, IndexError, TypeError) as exc:
             if attempt == RETRIES:
                 raise RuntimeError(f"Request failed after {RETRIES + 1} attempts: {exc}") from exc
+            time.sleep(RETRY_WAIT_S * (attempt + 1))
     raise AssertionError("unreachable")
+
+
+def wait_for_server(server_url, timeout_s):
+    """Return True once GET /health answers 200 (model loaded), False after timeout_s."""
+    deadline = time.monotonic() + timeout_s
+    while True:
+        try:
+            if requests.get(server_url.rstrip("/") + "/health", timeout=5).status_code == 200:
+                return True
+        except requests.RequestException:
+            pass
+        if time.monotonic() >= deadline:
+            return False
+        time.sleep(1)
 
 
 def positive_int(value):
@@ -127,6 +143,10 @@ def run(args):
     parameters = {**REQUEST_DEFAULTS, "max_tokens": MAX_TOKENS[args.task]}
     if args.model:
         parameters["model"] = args.model
+    if not wait_for_server(args.server_url, args.wait_server):
+        print(f"Error: server at {args.server_url} not ready after {args.wait_server:g} s "
+              f"(GET /health did not return 200); no output written.", file=sys.stderr)
+        return 1
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     stamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
@@ -189,6 +209,8 @@ def main(argv=None):
     parser.add_argument("--labels")
     parser.add_argument("--model", help="Optional server model identifier, not a GGUF path")
     parser.add_argument("--timeout", type=positive_float, default=300, help="Per-attempt HTTP timeout in seconds")
+    parser.add_argument("--wait-server", type=float, default=120,
+                        help="Seconds to wait for GET /health to return 200 before the first request")
     args = parser.parse_args(argv)
     try:
         return run(args)
