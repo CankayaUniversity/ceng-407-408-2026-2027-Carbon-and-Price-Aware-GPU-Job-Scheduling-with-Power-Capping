@@ -1,0 +1,57 @@
+{
+  "run_id": "20261122T200710Z_idle_nogpu",
+  "label": "idle_nogpu",
+  "note": "22 Nov session; NVML off, display on, apps closed, charge limit 80%; first 20 s to be dropped",
+  "start_utc": "2026-11-22T20:07:10.157+00:00",
+  "args": {
+    "ip": "<plug>",
+    "label": "idle_nogpu",
+    "interval": 1.0,
+    "duration": 200.0,
+    "outdir": "runs",
+    "gpu_index": 0,
+    "no_gpu": true,
+    "note": "22 Nov session; NVML off, display on, apps closed, charge limit 80%; first 20 s to be dropped"
+  },
+  "os": "Windows-11-10.0.26300-SP0",
+  "python": "3.15.2 (tags/v3.15.2:5e58eaa, Oct 25 2026, 17:27:03) [MSC v.1951 64 bit (AMD64)]",
+  "cpu_logical": 20,
+  "gpu": null,
+  "shelly": {
+    "model": "S3PL-30110EU",
+    "gen": 3,
+    "fw_id": "20251209-070625/geeb7eab",
+    "ver": "1.8.99-plugmg3prod0",
+    "app": "PlugMG3"
+  },
+  "battery": {
+    "psutil_percent": 80,
+    "psutil_plugged": true,
+    "full_charged_mwh": "51830",
+    "design_mwh": null
+  },
+  "time_sync_start": "Leap Indicator: 3(not synchronized)\nStratum: 0 (unspecified)\nPrecision: -23 (119.209ns per tick)\nRoot Delay: 0.0000000s\nRoot Dispersion: 0.0000000s\nReferenceId: 0x00000000 (unspecified)\nLast Successful Sync Time: unspecified\nSource: Local CMOS Clock\nPoll Interval: 10 (1024s)",
+  "end_utc": "2026-11-22T20:10:31.015+00:00",
+  "stop_reason": "duration",
+  "missed_slots": 0,
+  "event_counts": {},
+  "time_sync_end": "Leap Indicator: 3(not synchronized)\nStratum: 0 (unspecified)\nPrecision: -23 (119.209ns per tick)\nRoot Delay: 0.0000000s\nRoot Dispersion: 0.0000000s\nReferenceId: 0x00000000 (unspecified)\nLast Successful Sync Time: unspecified\nSource: Local CMOS Clock\nPoll Interval: 10 (1024s)",
+  "summary": {
+    "n_samples": 200,
+    "duration_s": 199.0,
+    "wall_wh_counter": 0.833,
+    "wall_wh_trapz": 0.9009,
+    "wall_trapz_covered_s": 199.0,
+    "wall_gaps_excluded_s": [],
+    "wall_samples_ok": 200,
+    "wall_w_mean": 16.45,
+    "wall_w_max": 80.6,
+    "gpu_wh_counter": null,
+    "bat_delta_mwh": 0,
+    "bat_discharging_samples": 0,
+    "bat_discharge_mw_max": 0,
+    "bat_charging_samples": 0,
+    "slot_late_ms_max": 5.9,
+    "slot_late_ms_mean": 0.41
+  }
+}

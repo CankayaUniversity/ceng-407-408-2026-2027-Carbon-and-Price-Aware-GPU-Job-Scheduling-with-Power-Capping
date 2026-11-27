@@ -1,0 +1,6 @@
+requests
+psutil
+nvidia-ml-py
+torch          # CUDA build, see pytorch.org
+google-genai   # LLM predictions (Gemini)
+anthropic      # optional: LLM predictions (Claude)

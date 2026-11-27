@@ -1,0 +1,5 @@
+[
+  {"iters": 20000, "n": 4096, "mhz": 0,    "duration_s": 115.3, "wall_w": 126.9, "net_wh": 3.164, "run": "20261118T182744Z_matmul_default"},
+  {"iters": 20000, "n": 4096, "mhz": 1200, "duration_s": 159.7, "wall_w": 97.3,  "net_wh": 3.069, "run": "20261118T183215Z_matmul_1200"},
+  {"iters": 20000, "n": 4096, "mhz": 900,  "duration_s": 212.9, "wall_w": 86.7,  "net_wh": 3.464, "run": "20261118T183641Z_matmul_900"}
+]

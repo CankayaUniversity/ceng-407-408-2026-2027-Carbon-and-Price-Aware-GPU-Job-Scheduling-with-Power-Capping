@@ -1,0 +1,25 @@
+{
+  "_about": "Hand-written notes on recorder runs. Runs with valid=false stay in the summary table but are never used as idle reference or result. idle_skip_s: seconds dropped at the start of an idle run (time for the GPU to go to sleep).",
+  "20261118T172439Z_idle": {
+    "valid": false,
+    "reason": "Defender scan after installing torch, and NVML polling keeps the GPU awake (observer effect)"
+  },
+  "20261118T172953Z_idle": {
+    "valid": false,
+    "reason": "NVML polling keeps the GPU awake (observer effect); recorded without --no-gpu"
+  },
+  "20261118T173651Z_idle_nogpu": {
+    "valid": false,
+    "reason": "System entered Modern Standby at 163 s; logging froze for 18.6 min"
+  },
+  "20261118T182344Z_idle_nogpu": {
+    "valid": true,
+    "idle_skip_s": 20,
+    "reason": "Reference idle: NVML off, display on, apps closed. Brightness and power mode were not logged"
+  },
+  "20261122T200710Z_idle_nogpu": {
+    "valid": true,
+    "idle_skip_s": 20,
+    "reason": "Reference idle (22 Nov): 15.1 W, 13 W lower than 18 Nov. Settings read after the run: brightness 30%, Performance plan, 144 Hz"
+  }
+}

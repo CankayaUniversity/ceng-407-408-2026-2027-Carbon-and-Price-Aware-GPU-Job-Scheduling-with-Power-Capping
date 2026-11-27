@@ -1,0 +1,66 @@
+{
+  "run_id": "20261118T172439Z_idle",
+  "label": "idle",
+  "note": "charge limit 80%, not charging, background apps minimized",
+  "start_utc": "2026-11-18T17:24:39.658+00:00",
+  "args": {
+    "ip": "<plug>",
+    "label": "idle",
+    "interval": 1.0,
+    "duration": 180.0,
+    "outdir": "runs",
+    "gpu_index": 0,
+    "note": "charge limit 80%, not charging, background apps minimized"
+  },
+  "os": "Windows-11-10.0.26300-SP0",
+  "python": "3.15.2 (tags/v3.15.2:5e58eaa, Oct 25 2026, 17:27:03) [MSC v.1951 64 bit (AMD64)]",
+  "cpu_logical": 20,
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "driver": "610.88",
+    "default_limit_w": 70.0,
+    "enforced_limit_w": 82.866,
+    "min_limit_w": 1.0,
+    "max_limit_w": 105.0,
+    "settable_limit_w": "ERR Not Supported"
+  },
+  "shelly": {
+    "model": "S3PL-30110EU",
+    "gen": 3,
+    "fw_id": "20251209-070625/geeb7eab",
+    "ver": "1.8.99-plugmg3prod0",
+    "app": "PlugMG3"
+  },
+  "battery": {
+    "psutil_percent": 80,
+    "psutil_plugged": true,
+    "full_charged_mwh": "51830",
+    "design_mwh": null
+  },
+  "time_sync_start": "Leap Indicator: 3(not synchronized)\nStratum: 0 (unspecified)\nPrecision: -23 (119.209ns per tick)\nRoot Delay: 0.0672864s\nRoot Dispersion: 10.2972845s\nReferenceId: 0x00000000 (unspecified)\nLast Successful Sync Time: 18.11.2026 19:21:57\nSource: time.windows.com,0x9 \nPoll Interval: 10 (1024s)",
+  "end_utc": "2026-11-18T17:27:41.676+00:00",
+  "stop_reason": "duration",
+  "missed_slots": 0,
+  "event_counts": {
+    "error:shelly": 2
+  },
+  "time_sync_end": "Leap Indicator: 3(not synchronized)\nStratum: 0 (unspecified)\nPrecision: -23 (119.209ns per tick)\nRoot Delay: 0.0672864s\nRoot Dispersion: 10.2972845s\nReferenceId: 0x00000000 (unspecified)\nLast Successful Sync Time: 18.11.2026 19:21:57\nSource: time.windows.com,0x9 \nPoll Interval: 10 (1024s)",
+  "summary": {
+    "n_samples": 180,
+    "duration_s": 179.0,
+    "wall_wh_counter": 3.541,
+    "wall_wh_trapz": 3.4691,
+    "wall_trapz_covered_s": 179.0,
+    "wall_gaps_excluded_s": [],
+    "wall_samples_ok": 178,
+    "wall_w_mean": 69.56,
+    "wall_w_max": 120.4,
+    "gpu_wh_counter": 0.2764,
+    "bat_delta_mwh": 0,
+    "bat_discharging_samples": 0,
+    "bat_discharge_mw_max": 0,
+    "bat_charging_samples": 0,
+    "slot_late_ms_max": 565.4,
+    "slot_late_ms_mean": 7.06
+  }
+}
