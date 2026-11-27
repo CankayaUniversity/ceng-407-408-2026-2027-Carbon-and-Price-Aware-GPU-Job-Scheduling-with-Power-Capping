@@ -162,7 +162,10 @@ Classification loads the eight products from `labels.json` next to the input;
 `cache_prompt=false`, `enable_thinking=false`, and a token cap of 16, 160 or 400
 for classify, summarize or synth respectively. Requests run one at a time. The
 per-attempt timeout defaults to 300 seconds and is configurable with `--timeout`.
-A failed HTTP request or malformed completion is retried at most twice. A
+Before the first request the runner waits up to `--wait-server` seconds (default 120)
+for `GET /health` to return 200, so a job started while the model is still loading
+fails cleanly instead of producing error rows. A failed HTTP request or malformed
+completion is retried at most twice, after waits of 2 and 4 seconds. A
 completion containing `<think>`, or a non-empty `reasoning_content` field (llama-server can
 move thinking text there), is recorded as a failed item without retrying it.
 Token-limit completions retain their `finish_reason`; quality checks happen later.

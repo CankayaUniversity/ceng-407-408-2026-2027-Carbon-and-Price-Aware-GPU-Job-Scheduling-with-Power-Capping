@@ -35,8 +35,17 @@ def completion(text="Credit card", timings=True):
 @contextmanager
 def fake_server():
     pending, received = deque(), []
+    health = {"ready": True}
 
     class Handler(BaseHTTPRequestHandler):
+        def do_GET(self):
+            payload = b'{"status": "ok"}' if self.path == "/health" and health["ready"] else b'{"error": "loading"}'
+            self.send_response(200 if self.path == "/health" and health["ready"] else 503)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(payload)))
+            self.end_headers()
+            self.wfile.write(payload)
+
         def do_POST(self):
             received.append((self.path, json.loads(self.rfile.read(int(self.headers["Content-Length"])))))
             status, body = pending.popleft() if pending else (500, {"error": "no canned response"})
@@ -167,6 +176,13 @@ def check_reasoning_content_fails(fake_server, task_input, tmp_path):
     assert rows[0]["reasoning_chars"] == len("hidden reasoning")
 
 
+def check_server_not_ready(task_input, tmp_path):
+    result = runner(task_input, tmp_path / "down", "http://127.0.0.1:9", "classify", "--wait-server", 1)
+    assert result.returncode != 0
+    assert "not ready" in result.stderr
+    assert not (tmp_path / "down" / "outputs").exists()
+
+
 def check_label_parsing(text):
     assert parse_label(text, LABELS) == "Credit card"
 
@@ -268,6 +284,9 @@ class TaskToolsTests(unittest.TestCase):
     def test_thinking(self):
         with fake_server() as server:
             check_thinking_fails_without_retry(server, self.input, self.path)
+
+    def test_server_not_ready(self):
+        check_server_not_ready(self.input, self.path)
 
     def test_reasoning_content(self):
         with fake_server() as server:
