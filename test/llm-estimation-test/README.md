@@ -104,9 +104,17 @@ Duration and gross energy scale linearly with the amount of work, even across me
 
 ## Limitations
 
-- One LLM, two test jobs, one measurement per setting.
-- Net energy depends on the idle reference. The formula's 11–13% net-energy error comes from idle changing between sessions (28.1 → 15.1 W); its duration and power errors are below 1%.
+- **One run per setting.** `job_profile.csv` has `n_runs = 1` and no standard deviation, while `shelly-plug-test` measured every setting 3 times in shuffled order. The two profiles are therefore not equally reliable. Repeats are planned (issue #4).
+- **Different job sizes per setting.** 1500 MHz was measured with 30,000 multiplications, the other clocks with 20,000. The per-1000 columns compensate for this (duration and gross energy scale linearly within 1%), but a direct comparison at equal size is stronger.
+- **Idle is not explained.** Idle was 28.1 W on 18 Nov and 15.1 W on 22 Nov. All net-energy values depend on it, so they are less reliable than duration and gross energy until the cause is found. Display and power settings are now logged to find it (issue #4).
+- One LLM and two test jobs.
 - Clock locking is an indirect power limit, not a watt limit.
+
+## Notes for combining with `shelly-plug-test`
+
+- **Observer effect differs between laptops.** On this laptop (RTX 3060), polling NVML once per second woke the GPU and raised idle wall power by 32 W. On the `shelly-plug-test` laptop (RTX 4060) the GPU stays at about 1.75 W while polled, so that idle baseline is not affected. The effect depends on the machine and should be checked on every new one.
+- **Idle definitions differ.** `shelly-plug-test` subtracts a fixed idle of 26.9 W; this folder subtracts the idle measured in the same session (`idle_w` column). If the scheduler reads both profiles, it needs one definition. Gross energy (`energy_wh`) is defined the same way in both and does not depend on idle.
+- **Two recorders.** `shelly-plug-test/scripts/measure_run.py` and `scripts/recorder.py` do the same job. `recorder.py` adds per-second battery logging, `--no-gpu` for idle and sleep prevention; these could be merged into one tool.
 
 ## Structure
 
