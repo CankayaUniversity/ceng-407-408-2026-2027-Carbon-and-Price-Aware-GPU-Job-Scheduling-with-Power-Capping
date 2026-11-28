@@ -41,6 +41,15 @@ def read_plug(url):
         return None, None
 
 
+def plug_reachable(url, attempts=5):
+    for attempt in range(attempts):
+        if read_plug(url)[0] is not None:
+            return True
+        if attempt < attempts - 1:
+            time.sleep(1)
+    return False
+
+
 def logger(file_name, label, url, stop, state):
     import pynvml
     pynvml.nvmlInit()
@@ -264,7 +273,7 @@ def append_run_row(args, state, file_name, run_id, elapsed, start_utc, end_utc, 
 def main():
     args = parse_args()
     url = None if args.no_plug else f"http://{args.plug_ip}/rpc/Switch.GetStatus?id=0"
-    if url and read_plug(url)[0] is None:
+    if url and not plug_reachable(url):
         print(f"Could not reach the plug ({args.plug_ip}). Check the IP or run with --no-plug.")
         return
 
